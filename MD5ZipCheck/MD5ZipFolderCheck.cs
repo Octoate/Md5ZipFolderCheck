@@ -14,15 +14,29 @@ namespace MD5ZipCheck
         [STAThread]
         static int Main(string[] args)
         {
+            //check if the GUI shall be invoked
             if (args != null && args.Length > 0)
             {
                 //parse command line
                 var cliArguments = new CommandLineArguments();
                 if (CommandLine.Parser.Default.ParseArguments(args, cliArguments))
                 {
-                    var md5Comparison = new Md5Comparison(cliArguments);
+                    int returnCode = 0;
+                    try
+                    {
+                        var md5Comparison = new Md5Comparison(cliArguments);
 
-                    return (int)md5Comparison.Compare();
+                        returnCode = (int)md5Comparison.Compare();
+                    }
+                    catch(Exception e)
+                    {
+                        //argument exceptions (invalid MD5 hash, ZIP file not found, directory not found)
+                        Console.WriteLine(cliArguments.GetUsage());
+                        Console.WriteLine("\n{0}", e.Message);
+                        returnCode = (int)CompareResult.Error;
+                    }
+
+                    return returnCode;
                 }
                 else
                 {

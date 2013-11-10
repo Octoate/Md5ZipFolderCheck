@@ -26,6 +26,7 @@ namespace MD5ZipCheck
             sb.AppendLine("MD5 Zip Folder Check");
             sb.AppendLine("Written 2013 by Tim Riemann");
             sb.AppendLine("http://www.octoate.de");
+            sb.AppendLine("Source code: http://github.com/Octoate/Md5ZipFolderCheck");
             sb.AppendLine();
             sb.AppendLine("This utility compares a given ZIP file to a MD5 hash. After this comparison was successful, it compares the " +
                 "contents of the ZIP file with the files in the given folder.");

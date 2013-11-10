@@ -106,7 +106,7 @@ namespace MD5ZipCheck
 
             if (!File.Exists(ZipFilePath))
             {
-                throw new FileNotFoundException("File not found!", ZipFilePath);
+                throw new FileNotFoundException("ZIP file not found: '{0}'", ZipFilePath);
             }
 
             if (!Directory.Exists(CompareFolder))
