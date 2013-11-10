@@ -51,6 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLineArguments.cs" />
+    <Compile Include="CompareForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompareForm.Designer.cs">
+      <DependentUpon>CompareForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompareResult.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -61,6 +67,9 @@
     <Compile Include="Md5Comparison.cs" />
     <Compile Include="MD5ZipFolderCheck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CompareForm.resx">
+      <DependentUpon>CompareForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

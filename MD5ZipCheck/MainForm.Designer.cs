@@ -49,7 +49,6 @@
             this.m_MD5HashLabel.Size = new System.Drawing.Size(181, 17);
             this.m_MD5HashLabel.TabIndex = 0;
             this.m_MD5HashLabel.Text = "MD5 Hash (Hex, 64 Chars):";
-            this.m_MD5HashLabel.Click += new System.EventHandler(this.m_MD5HashLabel_Click);
             // 
             // m_MD5HashTextbox
             // 
