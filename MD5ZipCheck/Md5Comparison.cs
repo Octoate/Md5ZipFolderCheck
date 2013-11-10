@@ -25,6 +25,7 @@ namespace MD5ZipCheck
             Md5Hash = md5hash.Replace(" ", "").Replace("-", "");
             ZipFilePath = zipFilePath;
             CompareFolder = compareFolder;
+            TextWriter = textWriter;
         }
 
         public Md5Comparison(string md5hash, string zipFilePath, string compareFolder)
@@ -56,7 +57,7 @@ namespace MD5ZipCheck
                 Console.WriteLine("Zip file MD5 mismatch: Expected MD5 hash = {0}, Computed MD5 hash = '{1}'", Md5Hash, zipMd5);
                 return CompareResult.InvalidZipHash;
             }
-            Console.WriteLine("Zip MD5 hash - OK.");
+            TextWriter.WriteLine("Zip MD5 hash - OK.");
 
             //compute MD5 hashes for files in folder
             var taskGetFolderHashes = Task.Run<ConcurrentDictionary<string, string>>(() =>
@@ -82,17 +83,17 @@ namespace MD5ZipCheck
                     if (ok > 0 && zipHashes.ContainsKey(x.Key) && !zipHashes[x.Key].Equals(x.Value))
                     {
                         Interlocked.Exchange(ref ok, 0);
-                        Console.WriteLine("Invalid MD5 hash for file '{0}' - expected '{1}' but was {0}.", x.Key, zipHashes[x.Key], x.Value);
+                        TextWriter.WriteLine("Invalid MD5 hash for file '{0}' - expected '{1}' but was {0}.", x.Key, zipHashes[x.Key], x.Value);
                     }
                 });
 
             if (ok == 0)
             {
-                Console.WriteLine("MD5 file mismatch(es) detected.");
+                TextWriter.WriteLine("MD5 file mismatch(es) detected.");
                 return CompareResult.InvalidFileHash;
             }
 
-            Console.WriteLine("MD5 file comparison - OK.");
+            TextWriter.WriteLine("MD5 file comparison - OK.");
 
             return CompareResult.Ok;
         }
@@ -131,7 +132,7 @@ namespace MD5ZipCheck
                     var hashString = BitConverter.ToString(hash).Replace("-", "");
                     fileStream.Close();
 
-                    Console.WriteLine("ZipEntry: {0}, MD5 hash = {1}", entry.FullName, hashString);
+                    TextWriter.WriteLine("ZipEntry: {0}, MD5 hash = {1}", entry.FullName, hashString);
                     md5Hashes.TryAdd(entry.FullName, hashString);
                 }
             }
@@ -158,7 +159,7 @@ namespace MD5ZipCheck
             {
                 var relativeFile = file.Replace(folder, "");
                 var md5Hash = GetMd5HashFromFile(file);
-                Console.WriteLine("File = {0}, MD5 hash = {1}", relativeFile, md5Hash);
+                TextWriter.WriteLine("File = {0}, MD5 hash = {1}", relativeFile, md5Hash);
                 folderHashes.TryAdd(relativeFile, md5Hash);
             }
 

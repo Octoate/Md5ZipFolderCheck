@@ -36,15 +36,16 @@
             this.m_CompareMessages.Location = new System.Drawing.Point(13, 13);
             this.m_CompareMessages.Multiline = true;
             this.m_CompareMessages.Name = "m_CompareMessages";
+            this.m_CompareMessages.ReadOnly = true;
             this.m_CompareMessages.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.m_CompareMessages.Size = new System.Drawing.Size(561, 294);
+            this.m_CompareMessages.Size = new System.Drawing.Size(716, 439);
             this.m_CompareMessages.TabIndex = 0;
             // 
             // CompareForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 411);
+            this.ClientSize = new System.Drawing.Size(741, 548);
             this.Controls.Add(this.m_CompareMessages);
             this.Name = "CompareForm";
             this.Text = "Compare MD5 / Files";

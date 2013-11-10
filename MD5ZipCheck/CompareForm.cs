@@ -13,29 +13,51 @@ namespace MD5ZipCheck
 {
     public partial class CompareForm : Form
     {
+        public delegate void AppendTextToTextbox(string text);
+        public AppendTextToTextbox myDelegate;
+
         public CompareForm(string md5hash, string zipFilePath, string compareFolder)
         {
-            InitializeComponent();
+            InitializeComponent();            
 
+            myDelegate = new AppendTextToTextbox(AppendTextToTextboxMethod);
             var comparer = new Md5Comparison(md5hash, zipFilePath, compareFolder, new TextBoxStreamWriter(m_CompareMessages));
             comparer.Compare();
+        }
+
+        public void AppendTextToTextboxMethod(string text)
+        {
+            m_CompareMessages.AppendText(text);
         }
     }
 
     //inner class to redirect the info messages from the compare class
     class TextBoxStreamWriter : TextWriter
     {
-        TextBox _output = null;
+        private TextBox m_Console;
 
-        public TextBoxStreamWriter(TextBox output)
+        public TextBoxStreamWriter(TextBox console)
         {
-            _output = output;
+            this.m_Console = console;
         }
 
         public override void Write(char value)
         {
             base.Write(value);
-            _output.AppendText(value.ToString()); // When character data is written, append it to the text box.
+            if (m_Console.InvokeRequired)
+            {
+                m_Console.BeginInvoke((MethodInvoker)delegate
+                {
+                    m_Console.AppendText(value.ToString());
+
+                    //console.SelectionStart = console.Text.Length;
+                    //console.ScrollToCaret();
+                });
+            }
+            else
+            {
+                m_Console.AppendText(value.ToString());
+            }
         }
 
         public override Encoding Encoding
