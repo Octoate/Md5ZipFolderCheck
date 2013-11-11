@@ -13,8 +13,6 @@ namespace MD5ZipCheck
 {
     internal class Md5Comparison
     {
-        private CommandLineArguments cliArguments;
-
         private string Md5Hash { get; set; }
         private string ZipFilePath { get; set; }
         private string CompareFolder { get; set; }
@@ -24,7 +22,7 @@ namespace MD5ZipCheck
         {
             Md5Hash = md5hash.Replace(" ", "").Replace("-", "");
             ZipFilePath = zipFilePath;
-            CompareFolder = compareFolder;
+            CompareFolder = compareFolder.TrimEnd('\\'); //trim any trailing backslash
             TextWriter = textWriter;
         }
 
@@ -34,11 +32,8 @@ namespace MD5ZipCheck
         }
 
         public Md5Comparison(CommandLineArguments cliArguments, TextWriter textWriter)
+            : this(cliArguments.Md5Hash, cliArguments.ZipFilePath, cliArguments.CompareFolder, textWriter)
         {
-            Md5Hash = cliArguments.Md5Hash;
-            ZipFilePath = cliArguments.ZipFilePath;
-            CompareFolder = cliArguments.CompareFolder;
-            TextWriter = textWriter;
         }
 
         public Md5Comparison(CommandLineArguments cliArguments)
