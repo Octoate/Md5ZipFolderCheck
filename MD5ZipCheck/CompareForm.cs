@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,21 +14,43 @@ namespace MD5ZipCheck
 {
     public partial class CompareForm : Form
     {
-        public delegate void AppendTextToTextbox(string text);
-        public AppendTextToTextbox myDelegate;
-
         public CompareForm(string md5hash, string zipFilePath, string compareFolder)
         {
             InitializeComponent();            
 
-            myDelegate = new AppendTextToTextbox(AppendTextToTextboxMethod);
             var comparer = new Md5Comparison(md5hash, zipFilePath, compareFolder, new TextBoxStreamWriter(m_CompareMessages));
-            comparer.Compare();
+            Task.Run(() =>
+                { 
+                    var result = comparer.Compare();
+                    m_StatusTextLabel.BeginInvoke(new Action(() =>
+                        {
+                            switch(result)
+                            {
+                                case CompareResult.Ok:
+                                    m_StatusTextLabel.Text = "OK";
+                                    m_StatusTextLabel.BackColor = Color.LightGreen;
+                                    break;
+                                case CompareResult.InvalidFileHash:
+                                    m_StatusTextLabel.Text = "Invalid file MD5 hash.";
+                                    m_StatusTextLabel.BackColor = Color.OrangeRed;
+                                    break;
+                                case CompareResult.InvalidZipHash:
+                                    m_StatusTextLabel.Text = "Invalid ZIP MD5 hash.";
+                                    m_StatusTextLabel.BackColor = Color.OrangeRed;
+                                    break;
+                                case CompareResult.Error:
+                                    m_StatusTextLabel.Text = "An internal error occurred.";
+                                    m_StatusTextLabel.BackColor = Color.Yellow;
+                                    break;
+                            }
+                            m_OkButton.Enabled = true;
+                        }));
+                });
         }
 
-        public void AppendTextToTextboxMethod(string text)
+        private void m_OkButton_Click(object sender, EventArgs e)
         {
-            m_CompareMessages.AppendText(text);
+            this.Dispose();
         }
     }
 
