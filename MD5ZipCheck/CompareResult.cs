@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MD5ZipCheck
 {
-    internal enum CompareResult : int
+    public enum CompareResult : int
     {
         Unknown = 255,
         Ok = 0,                 // hash & files ok

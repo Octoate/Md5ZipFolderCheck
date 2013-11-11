@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.txt = LICENSE.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MD5ZipFolderCheckTests", "MD5ZipFolderCheckTests\MD5ZipFolderCheckTests.csproj", "{F7AA5F64-16E4-449C-B595-DE6602220EBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{BCAC85F3-6925-4BB3-918D-720A9978FD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCAC85F3-6925-4BB3-918D-720A9978FD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCAC85F3-6925-4BB3-918D-720A9978FD7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7AA5F64-16E4-449C-B595-DE6602220EBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7AA5F64-16E4-449C-B595-DE6602220EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7AA5F64-16E4-449C-B595-DE6602220EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7AA5F64-16E4-449C-B595-DE6602220EBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

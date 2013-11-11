@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace MD5ZipCheck
 {
-    internal class Md5Comparison
+    public class Md5Comparison
     {
         private string Md5Hash { get; set; }
         private string ZipFilePath { get; set; }

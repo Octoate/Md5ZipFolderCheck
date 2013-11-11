@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MD5ZipCheck
 {
-    class CommandLineArguments
+    public class CommandLineArguments
     {
         [Option("md5", Required = true, HelpText = "MD5 hash of the ZIP file.")]
         public string Md5Hash { get; set; }
