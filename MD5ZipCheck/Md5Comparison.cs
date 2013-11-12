@@ -20,12 +20,45 @@ namespace MD5ZipCheck
 
         public Md5Comparison(string md5hash, string zipFilePath, string compareFolder, TextWriter textWriter)
         {
-            Md5Hash = md5hash.Replace(" ", "").Replace("-", "");
+            if (md5hash == null)
+            {
+                throw new ArgumentNullException("md5hash", "Invalid MD5 hash.");
+            }
+
+            if (!(md5hash.Length == 32))
+            {
+                throw new ArgumentException("Invalid MD5 hash (32 character hex string needed).");
+            }
+
+            if (zipFilePath == null)
+            {
+                throw new ArgumentNullException("zipFilePath", "Invalid ZIP file path.");
+            }
+
+            if (!File.Exists(zipFilePath))
+            {
+                throw new FileNotFoundException("ZIP file not found: '{0}'", ZipFilePath);
+            }
+
+            if (compareFolder == null)
+            {
+                throw new ArgumentNullException("compareFolder", "Invalid compare folder path.");
+            }
+
+            if (!Directory.Exists(compareFolder))
+            {
+                throw new DirectoryNotFoundException(string.Format("Directory not found: '{0}'", CompareFolder));
+            }
+
+            if (textWriter == null)
+            {
+                throw new ArgumentNullException("textWriter");
+            }
+
+            Md5Hash = md5hash.Replace(" ", "").Replace("-", "").ToUpper();
             ZipFilePath = zipFilePath;
             CompareFolder = compareFolder.TrimEnd('\\'); //trim any trailing backslash
             TextWriter = textWriter;
-
-            CheckParameters();
         }
 
         public Md5Comparison(string md5hash, string zipFilePath, string compareFolder)
@@ -91,29 +124,6 @@ namespace MD5ZipCheck
             TextWriter.WriteLine("MD5 file comparison - OK.");
 
             return CompareResult.Ok;
-        }
-
-        private void CheckParameters()
-        {
-            if (!(Md5Hash.Length == 32))
-            {
-                throw new ArgumentException("Invalid MD5 hash (32 character hex string needed).");
-            }
-
-            if (!File.Exists(ZipFilePath))
-            {
-                throw new FileNotFoundException("ZIP file not found: '{0}'", ZipFilePath);
-            }
-
-            if (!Directory.Exists(CompareFolder))
-            {
-                throw new DirectoryNotFoundException(string.Format("Directory not found: '{0}'", CompareFolder));
-            }
-
-            if (TextWriter == null)
-            {
-                throw new ArgumentNullException("textWriter");
-            }
         }
 
         #region ZIP operations
