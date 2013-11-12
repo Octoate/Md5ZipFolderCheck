@@ -20,6 +20,8 @@ namespace MD5ZipCheck
 
         public Md5Comparison(string md5hash, string zipFilePath, string compareFolder, TextWriter textWriter)
         {
+            CheckParameters();
+
             Md5Hash = md5hash.Replace(" ", "").Replace("-", "");
             ZipFilePath = zipFilePath;
             CompareFolder = compareFolder.TrimEnd('\\'); //trim any trailing backslash
@@ -43,8 +45,6 @@ namespace MD5ZipCheck
 
         public CompareResult Compare()
         {
-            CheckParameters();
-
             //compute MD5 hash for ZIP file
             string zipMd5 = GetMd5HashFromFile(ZipFilePath);
             if (!zipMd5.Equals(Md5Hash))
@@ -108,6 +108,11 @@ namespace MD5ZipCheck
             if (!Directory.Exists(CompareFolder))
             {
                 throw new DirectoryNotFoundException(string.Format("Directory not found: '{0}'", CompareFolder));
+            }
+
+            if (TextWriter == null)
+            {
+                throw new ArgumentNullException("textWriter");
             }
         }
 
