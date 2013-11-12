@@ -14,6 +14,9 @@ namespace MD5ZipCheck
         [STAThread]
         static int Main(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            Console.WriteLine("Start Run");
+
             //check if the GUI shall be invoked
             if (args != null && args.Length > 0)
             {
@@ -55,6 +58,14 @@ namespace MD5ZipCheck
 
                 return 0;
             }
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            Console.WriteLine("Unhandled Exception: " + ((Exception)e.ExceptionObject).Message);
+            Console.ReadLine();
+
+            Environment.Exit((int)CompareResult.Error);
         }
     }
 }

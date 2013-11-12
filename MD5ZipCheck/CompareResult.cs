@@ -12,6 +12,7 @@ namespace MD5ZipCheck
         Ok = 0,                 // hash & files ok
         InvalidZipHash = 1,     // invalid zip file hash
         InvalidFileHash = 2,    // invalid file hash
-        Error = 3               // an error occurred (e.g. internal exception)
+        CorruptZipFile = 3,     // corrupt ZIP file detected
+        Error = 4               // an error occurred (e.g. internal exception)
     }
 }

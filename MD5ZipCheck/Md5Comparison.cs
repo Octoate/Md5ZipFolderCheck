@@ -87,19 +87,32 @@ namespace MD5ZipCheck
             }
             TextWriter.WriteLine("Zip MD5 hash - OK.");
 
-            //compute MD5 hashes for files in folder
-            var taskGetFolderHashes = Task.Run<ConcurrentDictionary<string, string>>(() =>
-                {
-                    return GetFolderHashes(CompareFolder);
-                });
+            Task<ConcurrentDictionary<string, string>> taskGetFolderHashes = null;
+            Task<ConcurrentDictionary<string, string>> taskGetZipHashes = null;
+            try
+            {
+                //compute MD5 hashes for files in folder
+                taskGetFolderHashes = Task.Run<ConcurrentDictionary<string, string>>(() =>
+                    {
+                        return GetFolderHashes(CompareFolder);
+                    });
 
-            //computer MD5 hashes for files in ZIP file
-            var taskGetZipHashes = Task.Run<ConcurrentDictionary<string, string>>(() =>
-                {
-                    return GetMd5HashesFromZip(ZipFilePath);
-                });
+                
+                //compute MD5 hashes for files in ZIP file
+                taskGetZipHashes = Task.Run<ConcurrentDictionary<string, string>>(() =>
+                    {
+                        return GetMd5HashesFromZip(ZipFilePath);
+                    });
 
-            Task.WaitAll(taskGetFolderHashes, taskGetZipHashes);
+                Task.WaitAll(taskGetFolderHashes, taskGetZipHashes); //-> AggregateException from threads will be thrown here
+            }
+            catch (AggregateException ae)
+            {
+                //-> corrupt ZIP file
+                return CompareResult.CorruptZipFile;
+            }
+
+
 
             //finally compare all MD5 file hashes
             var folderHashes = taskGetFolderHashes.Result;
