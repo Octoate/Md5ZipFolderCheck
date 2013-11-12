@@ -20,12 +20,12 @@ namespace MD5ZipCheck
 
         public Md5Comparison(string md5hash, string zipFilePath, string compareFolder, TextWriter textWriter)
         {
-            CheckParameters();
-
             Md5Hash = md5hash.Replace(" ", "").Replace("-", "");
             ZipFilePath = zipFilePath;
             CompareFolder = compareFolder.TrimEnd('\\'); //trim any trailing backslash
             TextWriter = textWriter;
+
+            CheckParameters();
         }
 
         public Md5Comparison(string md5hash, string zipFilePath, string compareFolder)
