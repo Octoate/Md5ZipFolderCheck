@@ -20,4 +20,4 @@ License
 
 This utility is released under the MIT license. See LICENSE.txt for more information.
 
-2013 by Tim Riemann
+2013 by Octoate / Tim Riemann - http://www.octoate.de
