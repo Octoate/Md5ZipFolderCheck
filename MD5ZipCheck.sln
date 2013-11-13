@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7C1A476A-6AAE-457D-BC5A-9F2E3E383F2C}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.txt = LICENSE.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MD5ZipFolderCheckTests", "MD5ZipFolderCheckTests\MD5ZipFolderCheckTests.csproj", "{F7AA5F64-16E4-449C-B595-DE6602220EBD}"
