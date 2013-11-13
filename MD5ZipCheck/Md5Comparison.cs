@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
-namespace MD5ZipCheck
+namespace MD5ZipFolderCheck
 {
     public class Md5Comparison
     {
@@ -25,7 +25,9 @@ namespace MD5ZipCheck
                 throw new ArgumentNullException("md5hash", "Invalid MD5 hash.");
             }
 
-            if (!(md5hash.Length == 32))
+            Md5Hash = md5hash.Replace(" ", "").Replace("-", "").ToUpper();
+
+            if (!(Md5Hash.Length == 32))
             {
                 throw new ArgumentException("Invalid MD5 hash (32 character hex string needed).");
             }
@@ -55,7 +57,6 @@ namespace MD5ZipCheck
                 throw new ArgumentNullException("textWriter");
             }
 
-            Md5Hash = md5hash.Replace(" ", "").Replace("-", "").ToUpper();
             ZipFilePath = zipFilePath;
             CompareFolder = compareFolder.TrimEnd('\\'); //trim any trailing backslash
             TextWriter = textWriter;

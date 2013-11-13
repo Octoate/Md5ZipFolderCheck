@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MD5ZipCheck
+namespace MD5ZipFolderCheck
 {
     public partial class CompareForm : Form
     {

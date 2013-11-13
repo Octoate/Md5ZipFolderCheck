@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MD5ZipCheck
+namespace MD5ZipFolderCheck
 {
     static class MD5ZipFolderCheck
     {

@@ -1,4 +1,4 @@
-﻿namespace MD5ZipCheck
+﻿namespace MD5ZipFolderCheck
 {
     partial class MainForm
     {
@@ -57,7 +57,6 @@
             this.m_MD5HashTextbox.Name = "m_MD5HashTextbox";
             this.m_MD5HashTextbox.Size = new System.Drawing.Size(374, 22);
             this.m_MD5HashTextbox.TabIndex = 1;
-            this.m_MD5HashTextbox.Text = "800452A0 D9BA7876 9C63D42F E04FCD74";
             // 
             // m_ZipFileLabel
             // 
@@ -79,7 +78,6 @@
             this.m_ZipFilePathTextbox.Name = "m_ZipFilePathTextbox";
             this.m_ZipFilePathTextbox.Size = new System.Drawing.Size(334, 22);
             this.m_ZipFilePathTextbox.TabIndex = 3;
-            this.m_ZipFilePathTextbox.Text = "D:\\tmp\\KeePass-2.24.zip";
             // 
             // m_BrowseFileButton
             // 
@@ -116,7 +114,6 @@
             this.m_CompareDirectoryTextbox.Name = "m_CompareDirectoryTextbox";
             this.m_CompareDirectoryTextbox.Size = new System.Drawing.Size(335, 22);
             this.m_CompareDirectoryTextbox.TabIndex = 6;
-            this.m_CompareDirectoryTextbox.Text = "D:\\tmp\\KeePass";
             // 
             // m_CheckFileButton
             // 

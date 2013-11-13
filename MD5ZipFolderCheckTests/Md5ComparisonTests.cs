@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MD5ZipCheck;
+using MD5ZipFolderCheck;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO.Compression;
 using System.IO;
 using System.Security.Cryptography;
-namespace MD5ZipCheck.Tests
+namespace MD5ZipFolderCheck.Tests
 {
     [TestClass()]
     public class Md5ComparisonTests
@@ -189,6 +189,13 @@ namespace MD5ZipCheck.Tests
 
             var md5Comparison = new Md5Comparison(md5Hash, ZipFilePath, SubdirectoryPath);
             Assert.AreEqual(CompareResult.CorruptZipFile, md5Comparison.Compare());
+        }
+
+        [TestMethod()]
+        public void Md5HashWithSpaceAndDash()
+        {
+            var md5Comparison = new Md5Comparison(ZipMd5Hash.Insert(8, " ").Insert(16, "-"), ZipFilePath, SubdirectoryPath);
+            Assert.AreEqual(CompareResult.Ok, md5Comparison.Compare());
         }
     }
 }

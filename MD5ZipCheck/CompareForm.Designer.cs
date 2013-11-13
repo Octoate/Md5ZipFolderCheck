@@ -1,4 +1,4 @@
-﻿namespace MD5ZipCheck
+﻿namespace MD5ZipFolderCheck
 {
     partial class CompareForm
     {
