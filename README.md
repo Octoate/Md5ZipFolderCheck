@@ -10,7 +10,7 @@ Command line usage
 
 The executable has to be started with three arguments. The MD5 hash, which will be used to validate the ZIP file, the full path to the ZIP file and the full path to the folder which is compared to the contents of the ZIP file:
 
-md5zipfoldercheck --md5 <MD5Hash> -z <full path to the ZIP file> -f <full path to compare folder>
+md5zipfoldercheck --md5 "MD5Hash" -z "full path to the ZIP file" -f "full path to compare folder"
 
 Example: md5zipfoldercheck --md5 AABBCCEEFFGGHHIIJJKKLLMMNNOOPPQQ -z c:\test\test.zip -f c:\comparefolder
 
