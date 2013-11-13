@@ -31,9 +31,9 @@ namespace MD5ZipFolderCheck
             sb.AppendLine("This utility compares a given ZIP file to a MD5 hash. After this comparison was successful, it compares the " +
                 "contents of the ZIP file with the files in the given folder.");
             sb.AppendLine();
-            sb.AppendLine("Usage: md5zipfoldercheck -md5 <MD5Hash> -z <full path to the ZIP file> -f <full path to compare folder>");
+            sb.AppendLine("Usage: md5zipfoldercheck --md5 <MD5Hash> -z <full path to the ZIP file> -f <full path to compare folder>");
             sb.AppendLine();
-            sb.AppendLine(@"Example: md5zipfoldercheck -md5 AABBCCEEFFGGHHIIJJKKLLMMNNOOPPQQ -z c:\test\test.zip -f c:\comparefolder");
+            sb.AppendLine(@"Example: md5zipfoldercheck --md5 AABBCCEEFFGGHHIIJJKKLLMMNNOOPPQQ -z c:\test\test.zip -f c:\comparefolder");
             sb.AppendLine();
             sb.AppendLine("Returns: 0 = files and content is ok.");
             sb.AppendLine("         1 = invalid ZIP file detected");
