@@ -125,7 +125,7 @@ namespace MD5ZipFolderCheck
                     if (ok > 0 && zipHashes.ContainsKey(x.Key) && !zipHashes[x.Key].Equals(x.Value))
                     {
                         Interlocked.Exchange(ref ok, 0);
-                        TextWriter.WriteLine("Invalid MD5 hash for file '{0}' - expected '{1}' but was {0}.", x.Key, zipHashes[x.Key], x.Value);
+                        TextWriter.WriteLine("Invalid MD5 hash for file '{0}' - expected '{1}' but was '{2}'.", x.Key, zipHashes[x.Key], x.Value);
                     }
                 });
 
